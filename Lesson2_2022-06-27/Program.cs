@@ -6,7 +6,7 @@ namespace Lesson2_2022_06_27
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(GetCapitalizationOfNumber(86));
+            GetRootOfQuadraticEquation(20, 3, 5);
         }
 
 
@@ -146,7 +146,39 @@ namespace Lesson2_2022_06_27
 
         //4.	The user enters 3 numbers (A, B and C). Print to the console the solution(X-values) of the standard form quadratic equation, where AX^2+BX+C=0.
 
+        static void GetRootOfQuadraticEquation(int a, int b, int c)
+        {
+            double x1, x2, d;
 
+            d = b * b - 4 * a * c;
+
+            if (d == 0)
+            {
+                x1 = -b / (2.0 * a);
+                x2 = x1;
+                Console.WriteLine(GetRootOfQuadraticEquationResult(x1, x2)); 
+            }
+            else if (d > 0)
+            {
+                x1 = (-b + Math.Sqrt(d)) / (2 * a);
+                x2 = (-b - Math.Sqrt(d)) / (2 * a);
+                Console.WriteLine(GetRootOfQuadraticEquationResult(x1, x2)); 
+            }
+            else
+            {
+                Console.WriteLine(GetRootOfQuadraticEquationResultError(1));
+            }
+        }
+
+        static (double x1, double x2) GetRootOfQuadraticEquationResult (double x1, double x2)
+        {
+            return (x1, x2);
+        }
+
+        static string GetRootOfQuadraticEquationResultError(int errorCode)
+        {
+            return "Error";
+        }
 
 
         //5.	The user enters a two-digit number. Print the capitalization of this number to the console. For example, typing "25" will print "twenty-five" to the console.
@@ -156,7 +188,8 @@ namespace Lesson2_2022_06_27
             int divisionRemainder = a % 10;
             string firstNum = "";
             string secondNum = "";
-
+            string result = "";
+            
             if (intNum == 1)
             {
                 switch (divisionRemainder)
@@ -253,8 +286,16 @@ namespace Lesson2_2022_06_27
                         break;
                 }
             }
-
-            return (firstNum + " " + secondNum);
+            
+            if (secondNum == "")
+            {
+                result = firstNum;
+            }
+            else
+            {
+                result = firstNum + "-" + secondNum;
+            }
+            return (result);
         }
     }   
 }
